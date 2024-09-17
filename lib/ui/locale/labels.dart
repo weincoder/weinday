@@ -4,7 +4,7 @@ class WeinDayCopys {
       'Lorem ipsum dolor sit amet, consectetuer adipiscing.';
   static const String hello = 'Hello';
   static const String registerActivityName = 'Ingrese actividad';
-  static const String descriptionLabel = '¿Que hiciste hoy?';
+  static const String descriptionLabel = 'Cuentanos que hiciste';
   static const String rememberMe = 'Remember me';
   static const String recoveryPassword = 'Recovery Password';
   static const String orContinue = 'Or Coninue with';
@@ -13,6 +13,7 @@ class WeinDayCopys {
   static const String submitActivityLabel = 'Ingresar Actividad';
   static const String notAMember = 'Not a member?';
   static const String registerNow = 'Register Now';
+  static const String pickDate = 'Selecciona una fecha';
   static const String recenTrx = 'Recent transactions';
   static const List<String> listOFActivities = <String>[
     'Deporte 🏃🏻‍♀️ ',

@@ -3,14 +3,14 @@ import 'package:weinday/db/diary_database.dart';
 import 'package:weinday/ui/locale/labels.dart';
 import 'package:weinds/tokens/colors.dart';
 
-class Diary extends StatefulWidget {
-  const Diary({super.key});
+class ListOfActivities extends StatefulWidget {
+  const ListOfActivities({super.key});
 
   @override
-  State<Diary> createState() => _DiaryState();
+  State<ListOfActivities> createState() => _ListOfActivitiesState();
 }
 
-class _DiaryState extends State<Diary> {
+class _ListOfActivitiesState extends State<ListOfActivities> {
   final diaryDatabase = DiaryDatabase();
   var checkBoxState = false;
   var actividad = TextEditingController();

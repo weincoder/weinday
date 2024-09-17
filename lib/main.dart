@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinday/ui/pages/home_wein_day.dart';
+import 'package:weinday/ui/pages/list_activities.dart';
 import 'package:weinds/foundations/themes/weinds_themes.dart';
 
 void main() {
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/diary': (context) => const Diary(),
         '/': (context) => const HomeWeinDay(),
+        '/home': (context) => const HomeWeinDay(),
+        '/list-of-activities': (context) => const ListOfActivities(),
       },
       theme: ligthThemeWeincode,
     );
