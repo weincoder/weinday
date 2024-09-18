@@ -16,8 +16,8 @@ class WeinDayCopys {
   static const String pickDate = 'Selecciona una fecha';
   static const String recenTrx = 'Recent transactions';
   static const List<String> listOFActivities = <String>[
-    'Deporte 🏃🏻‍♀️ ',
-    'Comida 🥗🌯',
+    'Deporte 💪',
+    'Comida 🥗',
     'Emociones 🧠',
     'Lectura 📚'
   ];
@@ -28,4 +28,17 @@ class WeinDayErrors {
   static const String activityErrorLabel = 'Ingrese una actividad';
   static const String descriptionActivityErrorLabel =
       'Ingresa alguna descripcion';
+}
+
+class WeinDayMapImages {
+  WeinDayMapImages._();
+  static const String travel = 'assets/images/travel.png';
+  static const String hiking = 'assets/images/hiking.png';
+  static const String breakfast = 'assets/images/breakfast.png';
+  static const String feeling = 'assets/images/feeling.png';
+  static const String reading = 'assets/images/read.png';
+  static const String sport = 'assets/images/sport.png';
+  static const String fun = 'assets/images/fun.png';
+  static const String meditation = 'assets/images/meditar.png';
+  static const String work = 'assets/images/work.png';
 }

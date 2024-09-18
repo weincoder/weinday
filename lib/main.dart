@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/diary': (context) => const Diary(),
         '/': (context) => const HomeWeinDay(),
-        '/home': (context) => const HomeWeinDay(),
         '/list-of-activities': (context) => const ListOfActivities(),
       },
       theme: ligthThemeWeincode,
