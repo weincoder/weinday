@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart'; // Import the url_launcher package
+
 import 'package:weinday/ui/ds/animations/animations.dart';
+import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
 import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinds/tokens/colors.dart';
 import 'package:weinds/weinds.dart';
 
-class HomeWeinDay extends StatelessWidget {
-  const HomeWeinDay({super.key});
+class About extends StatelessWidget {
+  const About({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class HomeWeinDay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Image(
-            image: AssetImage('assets/images/read.png'),
+            image: AssetImage('assets/images/fun.png'),
           ),
           const Text(
             'W E I N D A Y',
@@ -27,7 +30,7 @@ class HomeWeinDay extends StatelessWidget {
             ),
           ),
           const Text(
-            'Tu aliado en conocerte mejor',
+            'Una aplicación creada por Weincode',
             style: TextStyle(
               fontFamily: 'Cocogoose',
               color: WeinDsColors.dark,
@@ -37,16 +40,15 @@ class HomeWeinDay extends StatelessWidget {
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                getAnimatedRightToLeftRoute(const Diary()),
-                (route) => false,
+              launchUrl(
+                Uri.parse('https://www.youtube.com/c/weincode'),
               );
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: WeinDsColors.scale06,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)))),
-            child: const Text('Iniciar',
+            child: const Text('Ir a canal de Youtube',
                 style: TextStyle(
                   fontFamily: 'Cocogoose',
                   color: WeinDsColors.light,
@@ -54,6 +56,9 @@ class HomeWeinDay extends StatelessWidget {
                 )),
           )
         ],
+      ),
+      bottomNavigationBar: const CustomBottomNav(
+        currentIndex: 2,
       ),
     );
   }

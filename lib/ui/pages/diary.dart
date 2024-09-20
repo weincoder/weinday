@@ -68,17 +68,15 @@ class _DiaryState extends State<Diary> {
                       Container(
                         height: 70,
                         width: 400,
-                        padding: const EdgeInsets.only(left: 24, bottom: 4),
+                        padding: const EdgeInsets.only(
+                            left: 12, bottom: 4, right: 30, top: 8),
                         decoration: userContainerDecoration,
                         child: DropdownMenu<String>(
+                            width: 300,
                             label: const Text(WeinDayCopys.registerActivityName,
-                                style: TextStyle(
-                                  fontFamily: 'Cocogoose',
-                                  color: WeinDsColors.dark,
-                                  fontSize: 16.0,
-                                )),
+                                style: TextFoundations.inputLabelStyle),
                             inputDecorationTheme: InputDecorationTheme(
-                              labelStyle: defaultInputLabelTheme,
+                              labelStyle: TextFoundations.styleLeading,
                               border: defaultInputBorder,
                             ),
                             initialSelection:
@@ -89,27 +87,40 @@ class _DiaryState extends State<Diary> {
                                 dropdownValue = value!;
                               });
                             },
+                            menuStyle: MenuStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.all(WeinDsColors.scale06),
+                              surfaceTintColor:
+                                  WidgetStateProperty.all(WeinDsColors.scale00),
+                              shadowColor:
+                                  WidgetStateProperty.all(WeinDsColors.scale05),
+                              elevation: WidgetStateProperty.all(4),
+                            ),
+                            textStyle: TextFoundations.inputTextStyle,
                             dropdownMenuEntries: WeinDayCopys.listOFActivities
                                 .map<DropdownMenuEntry<String>>((String value) {
                               return DropdownMenuEntry<String>(
-                                  value: value, label: value);
+                                value: value,
+                                label: value,
+                                labelWidget: Text(
+                                  value,
+                                  style: TextFoundations.dropDownTextStyle,
+                                ),
+                              );
                             }).toList()),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        height: 70,
-                        padding: const EdgeInsets.only(left: 24, bottom: 4),
+                        height: 90,
+                        padding:
+                            const EdgeInsets.only(left: 24, bottom: 4, top: 8),
                         margin: const EdgeInsets.symmetric(vertical: 24),
                         decoration: pswContainerDecoration,
                         child: TextFormField(
                             controller: actividad,
-                            style: const TextStyle(
-                              fontFamily: 'Cocogoose',
-                              color: WeinDsColors.dark,
-                              fontSize: 16.0,
-                            ),
+                            style: TextFoundations.inputTextStyle,
                             key: const Key('input-psw'),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -125,14 +136,19 @@ class _DiaryState extends State<Diary> {
                                 border: defaultInputBorder,
                                 label:
                                     const Text(WeinDayCopys.descriptionLabel),
-                                labelStyle: TextStyle(
-                                  fontFamily: 'Cocogoose',
-                                  color: WeinDsColors.dark,
-                                  fontSize: 16.0,
-                                ))),
+                                labelStyle: TextFoundations.inputLabelStyle)),
                       ),
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.calendar_today),
+                        icon: const Icon(
+                          Icons.calendar_today,
+                          color: WeinDsColors.scale06,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: WeinDsColors.scale02,
+                            // onPrimary: WeinDsColors.light,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)))),
                         onPressed: () async {
                           var pickedDate = await showDatePicker(
                             context: context,
@@ -146,9 +162,11 @@ class _DiaryState extends State<Diary> {
                             selectedDate = pickedDate;
                           });
                         },
-                        label: Text(selectedDate == null
-                            ? WeinDayCopys.pickDate
-                            : '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}'),
+                        label: Text(
+                            selectedDate == null
+                                ? WeinDayCopys.pickDate
+                                : '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}',
+                            style: TextFoundations.inputTextStyle),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 32, bottom: 48),

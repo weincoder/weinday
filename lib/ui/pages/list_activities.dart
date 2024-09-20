@@ -9,7 +9,7 @@ import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinds/tokens/colors.dart';
 
 class ListOfActivities extends StatefulWidget {
-  const ListOfActivities({super.key});
+  const ListOfActivities({Key? key}) : super(key: key);
 
   @override
   State<ListOfActivities> createState() => _ListOfActivitiesState();
@@ -22,47 +22,107 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
   Widget build(BuildContext context) {
     final diaryDatabase = DiaryDatabase();
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          margin: const EdgeInsets.only(top: 50),
-          padding: const EdgeInsets.all(27.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Histórico de tus actividades',
-                style: TextFoundations.headingStyle,
+      backgroundColor: Colors.white,
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            expandedHeight: 200,
+            backgroundColor: WeinDsColors.light,
+            flexibleSpace: const FlexibleSpaceBar(
+              background: Padding(
+                padding: EdgeInsets.all(36.0),
+                child: Image(
+                  image: AssetImage(WeinDayMapImages.reading),
+                  fit: BoxFit.cover,
+                ),
               ),
-              const Image(image: AssetImage(WeinDayMapImages.reading)),
-              Expanded(
-                child: FutureBuilder(
+            ),
+            automaticallyImplyLeading:
+                false, // Add this line to hide the back button icon
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(27.0),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  const Text(
+                    'Histórico de tus actividades',
+                    style: TextFoundations.headingStyle,
+                  ),
+                  FutureBuilder(
                     future: diaryDatabase.getAllDiary(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return ListView.separated(
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              tileColor: WeinDsColors.scale05,
-                              leading: Text(
-                                snapshot.data![index]['activity'],
-                                style: TextFoundations.styleLeading,
+                        final activities =
+                            snapshot.data as List<Map<String, dynamic>>;
+                        final groupedActivities =
+                            groupActivitiesByDate(activities);
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: groupedActivities.length,
+                                itemBuilder: (context, index) {
+                                  final date =
+                                      groupedActivities.keys.elementAt(index);
+                                  final activitiesForDate =
+                                      groupedActivities[date];
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8.0),
+                                        child: Text(
+                                          date,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                      ListView.separated(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: activitiesForDate!.length,
+                                        itemBuilder: (context, index) {
+                                          final activity =
+                                              activitiesForDate[index];
+                                          return ListTile(
+                                            tileColor: WeinDsColors.scale05,
+                                            leading: Text(
+                                              activity['activity'],
+                                              style:
+                                                  TextFoundations.styleLeading,
+                                            ),
+                                            title: Text(
+                                              activity['description'] ??
+                                                  'No diste descripcion',
+                                              style: TextFoundations.styleTitle,
+                                            ),
+                                            trailing: Text(
+                                              activity['date'],
+                                              style:
+                                                  TextFoundations.styleTrailing,
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) {
+                                          return const SizedBox(
+                                            height: 18,
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
-                              title: Text(
-                                snapshot.data![index]['description'] ??
-                                    'No diste descripcion',
-                                style: TextFoundations.styleTitle,
-                              ),
-                              trailing: Text(snapshot.data![index]['date'],
-                                  style: TextFoundations.styleTrailing),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              height: 18,
-                            );
-                          },
+                              const SizedBox(height: 16),
+                            ],
+                          ),
                         );
                       }
                       if (snapshot.hasError) {
@@ -77,34 +137,56 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(
-                                      getAnimatedRightToLeftRoute(
-                                          const Diary()));
+                                    getAnimatedRightToLeftRoute(const Diary()),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: WeinDsColors.scale06,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)))),
-                                child: const Text('Ingresar actividades',
-                                    style: TextStyle(
-                                      fontFamily: 'Cocogoose',
-                                      color: WeinDsColors.light,
-                                      fontSize: 16.0,
-                                    )),
-                              )
+                                  backgroundColor: WeinDsColors.scale06,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4)),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Ingresar actividades',
+                                  style: TextStyle(
+                                    fontFamily: 'Cocogoose',
+                                    color: WeinDsColors.light,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         );
                       } else {
                         return const CircularProgressIndicator();
                       }
-                    }),
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-        bottomNavigationBar: const CustomBottomNav(
-          currentIndex: 1,
-        ));
+        ],
+      ),
+      bottomNavigationBar: const CustomBottomNav(
+        currentIndex: 1,
+      ),
+    );
+  }
+
+  Map<String, List<Map<String, dynamic>>> groupActivitiesByDate(
+      List<Map<String, dynamic>> activities) {
+    final groupedActivities = <String, List<Map<String, dynamic>>>{};
+    for (final activity in activities) {
+      final date = activity['date'] as String;
+      if (groupedActivities.containsKey(date)) {
+        groupedActivities[date]!.add(activity);
+      } else {
+        groupedActivities[date] = [activity];
+      }
+    }
+    return groupedActivities;
   }
 }
