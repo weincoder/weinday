@@ -3,7 +3,6 @@ import 'package:weinday/db/diary_database.dart';
 import 'package:weinday/ui/ds/animations/animations.dart';
 import 'package:weinday/ui/ds/foundations/text_foundations.dart';
 import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
-import 'package:weinday/ui/helper/bottom_nav_tap.dart';
 import 'package:weinday/ui/locale/labels.dart';
 import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinds/tokens/colors.dart';
@@ -84,10 +83,14 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                                           ),
                                         ),
                                       ),
+                                      if (activitiesForDate == null ||
+                                          activitiesForDate.isEmpty)
+                                        const SizedBox()
+                                      else
                                       ListView.separated(
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
-                                        itemCount: activitiesForDate!.length,
+                                        itemCount: activitiesForDate.length,
                                         itemBuilder: (context, index) {
                                           final activity =
                                               activitiesForDate[index];

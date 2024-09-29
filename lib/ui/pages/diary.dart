@@ -165,7 +165,7 @@ class _DiaryState extends State<Diary> {
                         label: Text(
                             selectedDate == null
                                 ? WeinDayCopys.pickDate
-                                : '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}',
+                                : '${date?.month}/${date?.day}/${date?.year}',
                             style: TextFoundations.inputTextStyle),
                       ),
                       Container(
@@ -178,7 +178,7 @@ class _DiaryState extends State<Diary> {
                               if (_formLoginKey.currentState!.validate()) {
                                 // Save data to database
                                 String currentSelectedDate =
-                                    '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}';
+                                    '${date?.month}/${date?.day}/${date?.year}';
                                 await diaryDatabase.insertActivity(
                                   currentSelectedDate,
                                   dropdownValue,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // Import the url_launcher package
 
-import 'package:weinday/ui/ds/animations/animations.dart';
 import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
-import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinds/tokens/colors.dart';
 import 'package:weinds/weinds.dart';
 
