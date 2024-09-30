@@ -29,6 +29,6 @@ class CustomBottomNav extends StatelessWidget {
         unselectedItemColor: WeinDsColors.scale03,
         onTap: (tab) {
           navigatorTap(tab, context);
-        });
+        },);
   }
 }

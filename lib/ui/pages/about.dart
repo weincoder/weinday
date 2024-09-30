@@ -43,16 +43,22 @@ class About extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: WeinDsColors.scale06,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)))),
-            child: const Text('Ir a canal de Youtube',
-                style: TextStyle(
-                  fontFamily: 'Cocogoose',
-                  color: WeinDsColors.light,
-                  fontSize: 16.0,
-                )),
-          )
+              backgroundColor: WeinDsColors.scale06,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+            ),
+            child: const Text(
+              'Ir a canal de Youtube',
+              style: TextStyle(
+                fontFamily: 'Cocogoose',
+                color: WeinDsColors.light,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: const CustomBottomNav(

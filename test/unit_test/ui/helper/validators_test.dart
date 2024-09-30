@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weinday/ui/helper/validators.dart';
-import 'package:weinday/ui/locale/labels.dart';
+import 'package:weinday/ui/locale/weinday_copys.dart';
 
 void main() {
   group('validateInput', () {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weinds/tokens/colors.dart';
 
-//TODO: Cambiar a fuente free que use numeros
 class TextFoundations {
   static const TextStyle styleLeading = TextStyle(
     fontFamily: 'Cocogoose',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weinday/db/diary_database.dart';
 import 'package:weinday/ui/ds/foundations/text_foundations.dart';
 import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
-import 'package:weinday/ui/locale/labels.dart';
+import 'package:weinday/ui/locale/weinday_copys.dart';
 import 'package:weinds/tokens/colors.dart';
 
 class Diary extends StatefulWidget {
@@ -24,14 +24,20 @@ class _DiaryState extends State<Diary> {
   late BoxDecoration pswContainerDecoration;
   final defaultInputBorder = InputBorder.none;
   final defaultContainerInputDecoration = const BoxDecoration(
-      color: WeinDsColors.scale02,
-      borderRadius: BorderRadius.all(Radius.circular(4)));
-  final activeContainerInputDecoration = BoxDecoration(
-      color: WeinDsColors.scale02,
-      border: Border.all(color: WeinDsColors.light, width: 2),
-      borderRadius: const BorderRadius.all(Radius.circular(4)));
+    color: WeinDsColors.scale02,
+    borderRadius: BorderRadius.all(Radius.circular(4)),
+  );
+  final activeContainerInputDecoration = const BoxDecoration(
+    color: WeinDsColors.scale02,
+    border:
+        Border.fromBorderSide(BorderSide(color: WeinDsColors.light, width: 2)),
+    borderRadius: BorderRadius.all(Radius.circular(4)),
+  );
   final defaultInputLabelTheme = const TextStyle(
-      fontSize: 13, color: WeinDsColors.scale02, fontWeight: FontWeight.normal);
+    fontSize: 13,
+    color: WeinDsColors.scale02,
+    fontWeight: FontWeight.normal,
+  );
   DateTime? selectedDate = DateTime.now();
   @override
   void initState() {
@@ -55,7 +61,6 @@ class _DiaryState extends State<Diary> {
               child: Form(
                   key: _formLoginKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
@@ -69,12 +74,12 @@ class _DiaryState extends State<Diary> {
                         height: 70,
                         width: 400,
                         padding: const EdgeInsets.only(
-                            left: 12, bottom: 4, right: 30, top: 8),
+                            left: 12, bottom: 4, right: 30, top: 8,),
                         decoration: userContainerDecoration,
                         child: DropdownMenu<String>(
                             width: 300,
                             label: const Text(WeinDayCopys.registerActivityName,
-                                style: TextFoundations.inputLabelStyle),
+                                style: TextFoundations.inputLabelStyle,),
                             inputDecorationTheme: InputDecorationTheme(
                               labelStyle: TextFoundations.styleLeading,
                               border: defaultInputBorder,
@@ -107,7 +112,7 @@ class _DiaryState extends State<Diary> {
                                   style: TextFoundations.dropDownTextStyle,
                                 ),
                               );
-                            }).toList()),
+                            }).toList(),),
                       ),
                       const SizedBox(
                         height: 20,
@@ -136,7 +141,7 @@ class _DiaryState extends State<Diary> {
                                 border: defaultInputBorder,
                                 label:
                                     const Text(WeinDayCopys.descriptionLabel),
-                                labelStyle: TextFoundations.inputLabelStyle)),
+                                labelStyle: TextFoundations.inputLabelStyle,),),
                       ),
                       ElevatedButton.icon(
                         icon: const Icon(
@@ -148,9 +153,9 @@ class _DiaryState extends State<Diary> {
                             // onPrimary: WeinDsColors.light,
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(4)))),
+                                    BorderRadius.all(Radius.circular(4)),),),
                         onPressed: () async {
-                          var pickedDate = await showDatePicker(
+                          final pickedDate = await showDatePicker(
                             context: context,
                             initialEntryMode: DatePickerEntryMode.calendarOnly,
                             initialDate: DateTime.now(),
@@ -166,7 +171,7 @@ class _DiaryState extends State<Diary> {
                             selectedDate == null
                                 ? WeinDayCopys.pickDate
                                 : '${date?.month}/${date?.day}/${date?.year}',
-                            style: TextFoundations.inputTextStyle),
+                            style: TextFoundations.inputTextStyle,),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 32, bottom: 48),
@@ -193,13 +198,13 @@ class _DiaryState extends State<Diary> {
                               backgroundColor: WeinDsColors.scale06,
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(4)))),
+                                      BorderRadius.all(Radius.circular(4)),),),
                           child: const Text(WeinDayCopys.submitActivityLabel,
                               style: TextStyle(
                                 fontFamily: 'Cocogoose',
                                 color: WeinDsColors.light,
                                 fontSize: 16.0,
-                              )),
+                              ),),
                         ),
                       ),
                       // const DividerWithText(title: WeinfluCopys.orContinue),
@@ -207,7 +212,7 @@ class _DiaryState extends State<Diary> {
                         height: 42,
                       ),
                     ],
-                  ))),
+                  ),),),
         ),
       ),
       bottomNavigationBar: const CustomBottomNav(

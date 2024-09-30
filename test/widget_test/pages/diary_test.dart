@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weinday/ui/locale/labels.dart';
-import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
+import 'package:weinday/ui/locale/weinday_copys.dart';
+import 'package:weinday/ui/pages/diary.dart';
 
 void main() {
   testWidgets('Diary page displays correctly', (WidgetTester tester) async {

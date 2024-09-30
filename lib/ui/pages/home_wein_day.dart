@@ -45,14 +45,14 @@ class HomeWeinDay extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: WeinDsColors.scale06,
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)))),
+                    borderRadius: BorderRadius.all(Radius.circular(4)),),),
             child: const Text('Iniciar',
                 style: TextStyle(
                   fontFamily: 'Cocogoose',
                   color: WeinDsColors.light,
                   fontSize: 16.0,
-                )),
-          )
+                ),),
+          ),
         ],
       ),
     );

@@ -3,12 +3,12 @@ import 'package:weinday/db/diary_database.dart';
 import 'package:weinday/ui/ds/animations/animations.dart';
 import 'package:weinday/ui/ds/foundations/text_foundations.dart';
 import 'package:weinday/ui/ds/molecules/custom_bottom_nav.dart';
-import 'package:weinday/ui/locale/labels.dart';
+import 'package:weinday/ui/locale/weinday_copys.dart';
 import 'package:weinday/ui/pages/diary.dart';
 import 'package:weinds/tokens/colors.dart';
 
 class ListOfActivities extends StatefulWidget {
-  const ListOfActivities({Key? key}) : super(key: key);
+  const ListOfActivities({super.key});
 
   @override
   State<ListOfActivities> createState() => _ListOfActivitiesState();
@@ -27,7 +27,7 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
           const SliverAppBar(
             expandedHeight: 200,
             backgroundColor: WeinDsColors.light,
-            flexibleSpace: const FlexibleSpaceBar(
+            flexibleSpace:  FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.all(36.0),
                 child: Image(
@@ -74,7 +74,7 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
+                                            vertical: 8.0,),
                                         child: Text(
                                           date,
                                           style: TextStyle(
@@ -180,7 +180,7 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
   }
 
   Map<String, List<Map<String, dynamic>>> groupActivitiesByDate(
-      List<Map<String, dynamic>> activities) {
+      List<Map<String, dynamic>> activities,) {
     final groupedActivities = <String, List<Map<String, dynamic>>>{};
     for (final activity in activities) {
       final date = activity['date'] as String;

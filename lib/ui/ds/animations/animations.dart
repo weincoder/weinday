@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 PageRouteBuilder getAnimatedRightToLeftRoute(Widget page) {
   return PageRouteBuilder(
     pageBuilder: (_, __, ___) => page,
-    transitionDuration: const Duration(milliseconds: 300),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return FadeTransition(
         opacity: animation,

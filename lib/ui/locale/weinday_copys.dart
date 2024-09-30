@@ -19,7 +19,7 @@ class WeinDayCopys {
     'Deporte 💪',
     'Comida 🥗',
     'Emociones 🧠',
-    'Lectura 📚'
+    'Lectura 📚',
   ];
 }
 
