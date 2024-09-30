@@ -94,7 +94,7 @@ class _DiaryState extends State<Diary> {
                       onSelected: (String? value) {
                         // This is called when the user selects an item.
                         setState(() {
-                          dropdownValue = value!;
+                          dropdownValue = value?? WeinDayCopys.listOFActivities.first;
                         });
                       },
                       menuStyle: MenuStyle(
@@ -175,7 +175,8 @@ class _DiaryState extends State<Diary> {
                     height: 64,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formLoginKey.currentState!.validate()) {
+                        if (_formLoginKey.currentState != null &&
+                            _formLoginKey.currentState!.validate()) {
                           final currentSelectedDate =
                               '${date?.month}/${date?.day}/${date?.year}';
                           saveDataBasa(currentSelectedDate);
