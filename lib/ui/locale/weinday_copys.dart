@@ -9,6 +9,7 @@ class WeinDayCopys {
   static const String recoveryPassword = 'Recovery Password';
   static const String orContinue = 'Or Coninue with';
   static const String google = 'Google';
+  static const String continuar = 'continuar';
   static const String facebook = 'Facebook';
   static const String submitActivityLabel = 'Ingresar Actividad';
   static const String notAMember = 'Not a member?';
