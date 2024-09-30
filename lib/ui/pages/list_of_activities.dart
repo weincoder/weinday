@@ -27,7 +27,7 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
           const SliverAppBar(
             expandedHeight: 200,
             backgroundColor: WeinDsColors.light,
-            flexibleSpace:  FlexibleSpaceBar(
+            flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.all(36.0),
                 child: Image(
@@ -74,7 +74,8 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0,),
+                                          vertical: 8.0,
+                                        ),
                                         child: Text(
                                           date,
                                           style: TextStyle(
@@ -87,38 +88,40 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                                           activitiesForDate.isEmpty)
                                         const SizedBox()
                                       else
-                                      ListView.separated(
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        itemCount: activitiesForDate.length,
-                                        itemBuilder: (context, index) {
-                                          final activity =
-                                              activitiesForDate[index];
-                                          return ListTile(
-                                            tileColor: WeinDsColors.scale05,
-                                            leading: Text(
-                                              activity['activity'],
-                                              style:
-                                                  TextFoundations.styleLeading,
-                                            ),
-                                            title: Text(
-                                              activity['description'] ??
-                                                  'No diste descripcion',
-                                              style: TextFoundations.styleTitle,
-                                            ),
-                                            trailing: Text(
-                                              activity['date'],
-                                              style:
-                                                  TextFoundations.styleTrailing,
-                                            ),
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return const SizedBox(
-                                            height: 18,
-                                          );
-                                        },
-                                      ),
+                                        ListView.separated(
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          itemCount: activitiesForDate.length,
+                                          itemBuilder: (context, index) {
+                                            final activity =
+                                                activitiesForDate[index];
+                                            return ListTile(
+                                              tileColor: WeinDsColors.scale05,
+                                              leading: Text(
+                                                activity['activity'],
+                                                style: TextFoundations
+                                                    .styleLeading,
+                                              ),
+                                              title: Text(
+                                                activity['description'] ??
+                                                    'No diste descripcion',
+                                                style:
+                                                    TextFoundations.styleTitle,
+                                              ),
+                                              trailing: Text(
+                                                activity['date'],
+                                                style: TextFoundations
+                                                    .styleTrailing,
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return const SizedBox(
+                                              height: 18,
+                                            );
+                                          },
+                                        ),
                                     ],
                                   );
                                 },
@@ -128,43 +131,48 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
                           ),
                         );
                       }
-                      if (snapshot.hasError) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage('assets/images/travel.png'),
-                              ),
-                              const Text('Aun no has agregado acitividades'),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    getAnimatedRightToLeftRoute(const Diary()),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: WeinDsColors.scale06,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
+                      return snapshot.hasError
+                          ? Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      'assets/images/travel.png',
+                                    ),
                                   ),
-                                ),
-                                child: const Text(
-                                  'Ingresar actividades',
-                                  style: TextStyle(
-                                    fontFamily: 'Cocogoose',
-                                    color: WeinDsColors.light,
-                                    fontSize: 16.0,
+                                  const Text(
+                                    'Aun no has agregado acitividades',
                                   ),
-                                ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        getAnimatedRightToLeftRoute(
+                                          const Diary(),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: WeinDsColors.scale06,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(4),
+                                        ),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      'Ingresar actividades',
+                                      style: TextStyle(
+                                        fontFamily: 'Cocogoose',
+                                        color: WeinDsColors.light,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        return const CircularProgressIndicator();
-                      }
+                            )
+                          : const CircularProgressIndicator();
                     },
                   ),
                 ],
@@ -180,7 +188,8 @@ class _ListOfActivitiesState extends State<ListOfActivities> {
   }
 
   Map<String, List<Map<String, dynamic>>> groupActivitiesByDate(
-      List<Map<String, dynamic>> activities,) {
+    List<Map<String, dynamic>> activities,
+  ) {
     final groupedActivities = <String, List<Map<String, dynamic>>>{};
     for (final activity in activities) {
       final date = activity['date'] as String;

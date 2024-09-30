@@ -48,7 +48,7 @@ class _DiaryState extends State<Diary> {
 
   @override
   Widget build(BuildContext context) {
-    var date = selectedDate;
+    final date = selectedDate;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -56,168 +56,184 @@ class _DiaryState extends State<Diary> {
         padding: const EdgeInsets.all(27.0),
         child: SingleChildScrollView(
           child: Container(
-              margin: const EdgeInsets.only(top: 50),
-              padding: const EdgeInsets.all(27.0),
-              child: Form(
-                  key: _formLoginKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Reporte de tus actividades',
-                        style: TextFoundations.headingStyle,
+            margin: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.all(27.0),
+            child: Form(
+              key: _formLoginKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Reporte de tus actividades',
+                    style: TextFoundations.headingStyle,
+                  ),
+                  const Image(
+                    image: AssetImage('assets/images/hiking.png'),
+                  ),
+                  Container(
+                    height: 70,
+                    width: 400,
+                    padding: const EdgeInsets.only(
+                      left: 12,
+                      bottom: 4,
+                      right: 30,
+                      top: 8,
+                    ),
+                    decoration: userContainerDecoration,
+                    child: DropdownMenu<String>(
+                      width: 300,
+                      label: const Text(
+                        WeinDayCopys.registerActivityName,
+                        style: TextFoundations.inputLabelStyle,
                       ),
-                      const Image(
-                        image: AssetImage('assets/images/hiking.png'),
+                      inputDecorationTheme: InputDecorationTheme(
+                        labelStyle: TextFoundations.styleLeading,
+                        border: defaultInputBorder,
                       ),
-                      Container(
-                        height: 70,
-                        width: 400,
-                        padding: const EdgeInsets.only(
-                            left: 12, bottom: 4, right: 30, top: 8,),
-                        decoration: userContainerDecoration,
-                        child: DropdownMenu<String>(
-                            width: 300,
-                            label: const Text(WeinDayCopys.registerActivityName,
-                                style: TextFoundations.inputLabelStyle,),
-                            inputDecorationTheme: InputDecorationTheme(
-                              labelStyle: TextFoundations.styleLeading,
-                              border: defaultInputBorder,
-                            ),
-                            initialSelection:
-                                WeinDayCopys.listOFActivities.first,
-                            onSelected: (String? value) {
-                              // This is called when the user selects an item.
-                              setState(() {
-                                dropdownValue = value!;
-                              });
-                            },
-                            menuStyle: MenuStyle(
-                              backgroundColor:
-                                  WidgetStateProperty.all(WeinDsColors.scale06),
-                              surfaceTintColor:
-                                  WidgetStateProperty.all(WeinDsColors.scale00),
-                              shadowColor:
-                                  WidgetStateProperty.all(WeinDsColors.scale05),
-                              elevation: WidgetStateProperty.all(4),
-                            ),
-                            textStyle: TextFoundations.inputTextStyle,
-                            dropdownMenuEntries: WeinDayCopys.listOFActivities
-                                .map<DropdownMenuEntry<String>>((String value) {
-                              return DropdownMenuEntry<String>(
-                                value: value,
-                                label: value,
-                                labelWidget: Text(
-                                  value,
-                                  style: TextFoundations.dropDownTextStyle,
-                                ),
-                              );
-                            }).toList(),),
+                      initialSelection: WeinDayCopys.listOFActivities.first,
+                      onSelected: (String? value) {
+                        // This is called when the user selects an item.
+                        setState(() {
+                          dropdownValue = value!;
+                        });
+                      },
+                      menuStyle: MenuStyle(
+                        backgroundColor:
+                            WidgetStateProperty.all(WeinDsColors.scale06),
+                        surfaceTintColor:
+                            WidgetStateProperty.all(WeinDsColors.scale00),
+                        shadowColor:
+                            WidgetStateProperty.all(WeinDsColors.scale05),
+                        elevation: WidgetStateProperty.all(4),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      textStyle: TextFoundations.inputTextStyle,
+                      dropdownMenuEntries: WeinDayCopys.listOFActivities
+                          .map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(
+                          value: value,
+                          label: value,
+                          labelWidget: Text(
+                            value,
+                            style: TextFoundations.dropDownTextStyle,
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 90,
+                    padding: const EdgeInsets.only(left: 24, bottom: 4, top: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 24),
+                    decoration: pswContainerDecoration,
+                    child: TextFormField(
+                      controller: actividad,
+                      style: TextFoundations.inputTextStyle,
+                      key: const Key('input-psw'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return WeinDayErrors.descriptionActivityErrorLabel;
+                        }
+                        return null;
+                      },
+                      onTap: () {},
+                      obscuringCharacter: '*',
+                      decoration: InputDecoration(
+                        border: defaultInputBorder,
+                        label: const Text(WeinDayCopys.descriptionLabel),
+                        labelStyle: TextFoundations.inputLabelStyle,
                       ),
-                      Container(
-                        height: 90,
-                        padding:
-                            const EdgeInsets.only(left: 24, bottom: 4, top: 8),
-                        margin: const EdgeInsets.symmetric(vertical: 24),
-                        decoration: pswContainerDecoration,
-                        child: TextFormField(
-                            controller: actividad,
-                            style: TextFoundations.inputTextStyle,
-                            key: const Key('input-psw'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return WeinDayErrors
-                                    .descriptionActivityErrorLabel;
-                              }
-                              return null;
-                            },
-                            onTap: () {},
-                            obscureText: false,
-                            obscuringCharacter: '*',
-                            decoration: InputDecoration(
-                                border: defaultInputBorder,
-                                label:
-                                    const Text(WeinDayCopys.descriptionLabel),
-                                labelStyle: TextFoundations.inputLabelStyle,),),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    icon: const Icon(
+                      Icons.calendar_today,
+                      color: WeinDsColors.scale06,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: WeinDsColors.scale02,
+                      // onPrimary: WeinDsColors.light,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
                       ),
-                      ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.calendar_today,
-                          color: WeinDsColors.scale06,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: WeinDsColors.scale02,
-                            // onPrimary: WeinDsColors.light,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4)),),),
-                        onPressed: () async {
-                          final pickedDate = await showDatePicker(
-                            context: context,
-                            initialEntryMode: DatePickerEntryMode.calendarOnly,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2019),
-                            lastDate: DateTime(2050),
-                          );
-
-                          setState(() {
-                            selectedDate = pickedDate;
-                          });
-                        },
-                        label: Text(
-                            selectedDate == null
-                                ? WeinDayCopys.pickDate
-                                : '${date?.month}/${date?.day}/${date?.year}',
-                            style: TextFoundations.inputTextStyle,),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 32, bottom: 48),
-                        width: 394,
-                        height: 64,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            if (_formLoginKey.currentState!.validate()) {
-                              if (_formLoginKey.currentState!.validate()) {
-                                // Save data to database
-                                String currentSelectedDate =
-                                    '${date?.month}/${date?.day}/${date?.year}';
-                                await diaryDatabase.insertActivity(
-                                  currentSelectedDate,
-                                  dropdownValue,
-                                  actividad.text,
-                                );
-                                Navigator.of(context)
-                                    .pushNamed('/list-of-activities');
-                              }
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: WeinDsColors.scale06,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),),),
-                          child: const Text(WeinDayCopys.submitActivityLabel,
-                              style: TextStyle(
-                                fontFamily: 'Cocogoose',
-                                color: WeinDsColors.light,
-                                fontSize: 16.0,
-                              ),),
+                    ),
+                    onPressed: () {
+                      showDatePickerWidget(context);
+                    },
+                    label: Text(
+                      selectedDate == null
+                          ? WeinDayCopys.pickDate
+                          : '${date?.month}/${date?.day}/${date?.year}',
+                      style: TextFoundations.inputTextStyle,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 32, bottom: 48),
+                    width: 394,
+                    height: 64,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formLoginKey.currentState!.validate()) {
+                          final currentSelectedDate =
+                              '${date?.month}/${date?.day}/${date?.year}';
+                          saveDataBasa(currentSelectedDate);
+                          Navigator.of(context)
+                              .pushNamed('/list-of-activities');
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: WeinDsColors.scale06,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
                         ),
                       ),
-                      // const DividerWithText(title: WeinfluCopys.orContinue),
-                      const SizedBox(
-                        height: 42,
+                      child: const Text(
+                        WeinDayCopys.submitActivityLabel,
+                        style: TextStyle(
+                          fontFamily: 'Cocogoose',
+                          color: WeinDsColors.light,
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ],
-                  ),),),
+                    ),
+                  ),
+                  // const DividerWithText(title: WeinfluCopys.orContinue),
+                  const SizedBox(
+                    height: 42,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: const CustomBottomNav(
         currentIndex: 0,
       ),
+    );
+  }
+
+  Future<void> showDatePickerWidget(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate!,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  Future<void> saveDataBasa(String date) async {
+    await diaryDatabase.insertActivity(
+      date,
+      dropdownValue,
+      actividad.text,
     );
   }
 }
