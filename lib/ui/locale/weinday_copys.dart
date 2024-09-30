@@ -13,6 +13,7 @@ class WeinDayCopys {
   static const String submitActivityLabel = 'Ingresar Actividad';
   static const String notAMember = 'Not a member?';
   static const String registerNow = 'Register Now';
+  static const String register = 'Register';
   static const String pickDate = 'Selecciona una fecha';
   static const String recenTrx = 'Recent transactions';
   static const List<String> listOFActivities = <String>[
